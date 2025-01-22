@@ -1,10 +1,23 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:hollet_admin/services/table/table_storage_service.dart';
 import '../../repository/table/table_data.dart';
 
 class TableManagementService extends GetxService {
   final RxList<TableData> tables = <TableData>[].obs;
   final Rx<TableData?> selectedTable = Rx<TableData?>(null);
+
+  late TableStorageService tableStorageService;
+
+  @override
+  void onInit() {
+    super.onInit();
+  }
+
+  void initialize() async {
+    tableStorageService = Get.find<TableStorageService>();
+    tables.value = await tableStorageService.loadTableLayout();
+  }
 
   // 테이블 추가
   Future<void> addTable(TableData table) async {

@@ -9,8 +9,9 @@ class AppBinding implements Bindings {
   void dependencies() {
     // 여기에 전역적으로 사용할 컨트롤러들을 등록합니다
     // 예: Get.put(GlobalController());
-    Get.put(TableManagementService(), permanent: true);
     Get.put(TableStorageService(), permanent: true);
+    Get.put(TableManagementService(), permanent: true);
+    Get.find<TableManagementService>().initialize();
     Get.put(DeviceManagementService(), permanent: true);
     Get.put(PresetStorageService(), permanent: true);
   }
