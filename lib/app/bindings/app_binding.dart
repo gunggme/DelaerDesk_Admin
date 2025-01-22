@@ -11,8 +11,11 @@ class AppBinding implements Bindings {
     // 예: Get.put(GlobalController());
     Get.put(TableStorageService(), permanent: true);
     Get.put(TableManagementService(), permanent: true);
-    Get.find<TableManagementService>().initialize();
     Get.put(DeviceManagementService(), permanent: true);
     Get.put(PresetStorageService(), permanent: true);
+
+    // todo 나중에 로그인 성공시 불러오기로 변경 필요
+    Get.find<TableManagementService>().initialize();
+    Get.find<PresetStorageService>().initialize();
   }
 }

@@ -2,8 +2,6 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:hollet_admin/repository/preset/preset_data.dart';
-import 'package:hollet_admin/repository/preset/prize_array_data.dart';
-import 'package:hollet_admin/repository/preset/time_table_data.dart';
 import 'package:hollet_admin/utils/logger/app_logger.dart';
 import 'package:http/http.dart' as http;
 
@@ -11,6 +9,10 @@ class PresetStorageService extends GetxService {
   final AppLogger _logger = AppLogger("PresetStorageService");
 
   List<PresetData> presetList = [];
+
+  void initialize() async {
+    await loadPreset();
+  }
 
   Future<bool> savePreset(PresetData preset) async {
     // todo 실제 데이터베이스에 저장하기
